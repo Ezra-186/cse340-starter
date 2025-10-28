@@ -1,5 +1,5 @@
 {
-	"name": "cse340-inventory",
+	"name": "cse340-starter",
 	"private": true,
 	"scripts": {
 		"dev": "nodemon src/server.js",
