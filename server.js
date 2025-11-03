@@ -35,6 +35,8 @@ app.use(session({
 
 // routes
 app.use('/', require('./routes/index'))
+app.use('/health', require('./routes/health'));
+
 
 // error page
 app.use((err, req, res, next) => {
