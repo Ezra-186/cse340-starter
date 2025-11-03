@@ -1,4 +1,3 @@
-// Why: one shared PG pool for all queries
 const { Pool } = require('pg');
 require('dotenv').config();
 
