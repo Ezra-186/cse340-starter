@@ -1,1 +1,26 @@
-<footer><small>&copy; <%= new Date().getFullYear() %></small></footer>
+<footer class="site-footer" id="contact">
+  <div class="container footer-grid">
+    <div>
+      <h2>Visit CSE Motors</h2>
+      <p>1313 Disneyland Dr<br />Anaheim, CA 92802</p>
+      <p><a href="tel:18015551234">1-888-555-1313</a></p>
+    </div>
+    <div>
+      <h2>Hours</h2>
+      <dl>
+        <div><dt>Mon&ndash;Fri</dt><dd>9:00 AM&ndash;7:00 PM</dd></div>
+        <div><dt>Saturday</dt><dd>10:00 AM&ndash;5:00 PM</dd></div>
+        <div><dt>Sunday</dt><dd>Closed</dd></div>
+      </dl>
+    </div>
+    <div id="account">
+      <h2>Stay Informed</h2>
+      <form class="footer-form" action="/newsletter" method="post">
+        <label for="newsletter-email">Email address</label>
+        <input id="newsletter-email" type="email" name="email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <p class="footer-meta">&copy; <%= new Date().getFullYear() %> CSE Motors. Created by Daniel Ezra Riivera. All rights reserved.</p>
+</footer>

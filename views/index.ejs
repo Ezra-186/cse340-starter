@@ -1,3 +1,95 @@
-<h2>Welcome</h2>
-<p>Express + EJS + Postgres is running.</p>
-<p>DB says: <%= dbMsg %></p>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <h1>Welcome to CSE Motors!</h1>
+      <div class="hero-card">
+        <h2>Delorean</h2>
+        <ul class="hero-card-list">
+          <li>3 Cup holders</li>
+          <li>Superman doors</li>
+          <li>Fuzzy dice!</li>
+        </ul>
+        <a class="button primary" href="#account">Own Today</a>
+      </div>
+    </div>
+    <figure class="hero-media">
+      <button class="hero-media-trigger" type="button" data-modal-open="delorean-modal">
+        <img
+          src="/images/delorean.webp"
+          alt="Delorean sports car driving toward the sunset"
+          width="1536"
+          height="1024"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </button>
+    </figure>
+  </div>
+</section>
+
+<div id="sedan" aria-hidden="true"></div>
+<div id="suv" aria-hidden="true"></div>
+<div id="truck" aria-hidden="true"></div>
+
+<section class="delorean-section" id="custom">
+  <div class="container delorean-grid">
+    <div class="upgrades">
+      <h2>Delorean Upgrades</h2>
+      <ul class="upgrade-grid">
+        <li>
+          <a class="upgrade-tile" href="#flux">
+            <img src="/images/flux.webp" alt="Flux Capacitor upgrade icon" width="1024" height="1024" loading="lazy" decoding="async" />
+            <span>Flux Capacitor</span>
+          </a>
+        </li>
+        <li>
+          <a class="upgrade-tile" href="#flame">
+            <img src="/images/fire.webp" alt="Flame decals upgrade icon" width="1024" height="1024" loading="lazy" decoding="async" />
+            <span>Flame Decals</span>
+          </a>
+        </li>
+        <li>
+          <a class="upgrade-tile" href="#sticker">
+            <img src="/images/sticker.webp" alt="Bumper stickers upgrade icon" width="1024" height="1024" loading="lazy" decoding="async" />
+            <span>Bumper Stickers</span>
+          </a>
+        </li>
+        <li>
+          <a class="upgrade-tile" href="#rims">
+            <img src="/images/rims.webp" alt="Hub caps upgrade icon" width="1024" height="1024" loading="lazy" decoding="async" />
+            <span>Hub Caps</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="reviews">
+      <h2>DMC Delorean Reviews</h2>
+      <ul class="review-list">
+        <li>“This ride hits 88mph with style.”</li>
+        <li>“Doors that wow every crowd.”</li>
+        <li>“Comfort that keeps the past and future cozy.”</li>
+        <li>“Retro lines with modern performance.”</li>
+        <li>“Worth every flux pulse.”</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="modal" id="delorean-modal" aria-hidden="true">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="delorean-modal-title">
+    <div class="modal-header">
+      <h2 id="delorean-modal-title">Delorean Preview</h2>
+      <button class="modal-close" type="button" data-modal-close aria-label="Close modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <img
+        src="/images/delorean.webp"
+        alt="Delorean sports car driving toward the sunset"
+        width="1536"
+        height="1024"
+        decoding="async"
+      />
+    </div>
+  </div>
+</div>

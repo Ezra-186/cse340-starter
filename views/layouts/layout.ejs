@@ -5,9 +5,10 @@
     <title><%= title %></title>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <%- include('../partials/header') %>
     <%- include('../partials/nav') %>
-    <main>
+    <main id="main-content" class="site-main">
       <%- body %>
     </main>
     <%- include('../partials/footer') %>
