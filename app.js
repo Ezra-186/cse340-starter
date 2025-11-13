@@ -37,24 +37,28 @@ app.use(
 // Routes
 app.use("/", require("./routes/index"))
 app.use("/health", require("./routes/health"))
-
-
 app.use("/inv", require("./routes/inventory"))
 
-// 404
-app.use(async (req, res) => {
-  try {
-    const nav = await utilities.getNav()
-    res.status(404).render("errors/404", { title: "Not Found", nav })
-  } catch {
-    res.status(404).render("errors/404", { title: "Not Found", nav: "" })
-  }
+app.use(async (req, res, next) => {
+  next({ status: 404, message: "Sorry, we appear to have lost that page." })
 })
 
-// 500
-app.use((err, req, res, next) => {
-  console.error(err)
-  res.status(500).send("Server error. Check the logs.")
+app.use(async (err, req, res, next) => {
+  const nav = await utilities.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+
+  let message
+  if (err.status == 404) {
+    message = err.message
+  } else {
+    message = "Oh no! There was a crash. Maybe try a different route?"
+  }
+
+  res.status(err.status || 500).render("errors/error", {
+    title: err.status || "Server Error",
+    message,
+    nav,
+  })
 })
 
 app.listen(PORT, () => {

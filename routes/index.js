@@ -1,10 +1,9 @@
-const express = require("express");
-const router = express.Router();
+const express = require("express")
+const router = express.Router()
 
-router.get("/", (req, res) => {
-  res.render("index", {
-    title: "CSE Motors | Home",
-  });
-});
+const baseController = require("../controllers/baseController")
+const utilities = require("../utilities")
 
-module.exports = router;
+router.get("/", utilities.handleErrors(baseController.buildHome))
+
+module.exports = router
