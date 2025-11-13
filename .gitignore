@@ -1,3 +1,5 @@
 node_modules/
+scripts/list-classifications.js
 .env
 .DS_Store
+
