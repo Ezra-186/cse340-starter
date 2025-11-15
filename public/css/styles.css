@@ -831,7 +831,7 @@ a:focus-visible {
   margin: 0;
   font-size: 1.35rem;
   font-weight: 700;
-  color: var(--color-primary-dark);
+  color: var(--color-secondary);
 }
 
 .vehicle-detail__miles,
