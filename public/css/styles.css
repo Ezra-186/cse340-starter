@@ -747,8 +747,10 @@ a:focus-visible {
 
 .inv-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
   gap: 1rem;
+  justify-content: center;
+  justify-items: center;
   list-style: none;
   padding: 0;
 }
@@ -789,9 +791,18 @@ a:focus-visible {
   padding: 1.75rem;
 }
 
+.page-title {
+  margin: 0 0 1.5rem;
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  color: var(--color-primary-dark);
+}
+
 .vehicle-detail {
   display: grid;
   gap: 1.5rem;
+  margin-inline: auto;
+  width: min(100%, 60rem);
 }
 
 .vehicle-detail__image {
@@ -820,7 +831,7 @@ a:focus-visible {
   margin: 0;
   font-size: 1.35rem;
   font-weight: 700;
-  color: var(--color-secondary);
+  color: var(--color-primary-dark);
 }
 
 .vehicle-detail__miles,
