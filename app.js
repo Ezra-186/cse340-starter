@@ -37,25 +37,21 @@ app.use(
 // Routes
 app.use("/", require("./routes/index"))
 app.use("/health", require("./routes/health"))
-app.use("/inv", require("./routes/inventory"))
+app.use("/inv", require("./routes/inventoryRoute"))
 
 app.use(async (req, res, next) => {
   next({ status: 404, message: "Sorry, we appear to have lost that page." })
 })
 
 app.use(async (err, req, res, next) => {
-  const nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  const status = err.status || 500
+  const nav = await utilities.getNav()
+  const message =
+    err.message || "Oh no! There was a crash. Maybe try a different route?"
 
-  let message
-  if (err.status == 404) {
-    message = err.message
-  } else {
-    message = "Oh no! There was a crash. Maybe try a different route?"
-  }
-
-  res.status(err.status || 500).render("errors/error", {
-    title: err.status || "Server Error",
+  res.status(status).render("errors/error", {
+    title: `${status} Error`,
     message,
     nav,
   })

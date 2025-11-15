@@ -1,7 +1,7 @@
 :root {
   --color-primary: #0a4f9c;
   --color-primary-dark: #091f43;
-  --color-secondary: #41b27a;
+  --color-secondary: #127f48;
   --color-accent: #f48f43;
   --color-text: #1b1e2c;
   --color-muted: #495066;
@@ -767,3 +767,82 @@ a:focus-visible {
   border-radius: 8px;
 }
 
+.vehicle-detail-page {
+  padding-block: 3rem;
+}
+
+.vehicle-detail-page__header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.vehicle-detail-page__header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  color: var(--color-primary-dark);
+}
+
+.vehicle-detail-page__body {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 1.75rem;
+}
+
+.vehicle-detail {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.vehicle-detail__image {
+  margin: 0;
+}
+
+.vehicle-detail__image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+.vehicle-detail__info {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.vehicle-detail__info h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--color-primary-dark);
+}
+
+.vehicle-detail__price {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.vehicle-detail__miles,
+.vehicle-detail__color {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.vehicle-detail__description {
+  margin: 0;
+  line-height: 1.7;
+}
+
+@media (min-width: 768px) {
+  .vehicle-detail-page__body {
+    padding: 2.5rem;
+  }
+
+  .vehicle-detail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 2.5rem;
+  }
+}

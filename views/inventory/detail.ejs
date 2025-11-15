@@ -1,20 +1,10 @@
-<h1>
-    <%= `${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}` %>
-</h1>
-
-<% if (vehicle.inv_image) { %>
-    <img src="<%= vehicle.inv_image %>" alt="<%= `${vehicle.inv_make} ${vehicle.inv_model}` %>" />
-    <% } %>
-
-        <ul class="vehicle-specs">
-            <li>Price: $<%= Number(vehicle.inv_price).toLocaleString() %>
-            </li>
-            <li>Color: <%= vehicle.inv_color ?? "—" %>
-            </li>
-            <li>Miles: <%= vehicle.inv_miles !=null ? Number(vehicle.inv_miles).toLocaleString() : "—" %>
-            </li>
-        </ul>
-
-        <p>
-            <%= vehicle.inv_description ?? "" %>
-        </p>
+<section class="vehicle-detail-page">
+  <div class="container">
+    <header class="vehicle-detail-page__header">
+      <h1><%= title %></h1>
+    </header>
+    <div class="vehicle-detail-page__body">
+      <%- vehicleDetail %>
+    </div>
+  </div>
+</section>

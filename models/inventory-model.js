@@ -16,7 +16,7 @@ async function getInventoryByClassificationId(classificationId) {
   return pool.query(sql, [classificationId])
 }
 
-async function getVehicleById(invId) {
+async function getVehicleById(inv_id) {
   const sql = `
     SELECT inv_id, inv_make, inv_model, inv_year,
            inv_price, inv_color, inv_miles,
@@ -24,7 +24,7 @@ async function getVehicleById(invId) {
     FROM public.inventory
     WHERE inv_id = $1
   `
-  const result = await pool.query(sql, [invId])
+  const result = await pool.query(sql, [inv_id])
   return result.rows[0] || null
 }
 
