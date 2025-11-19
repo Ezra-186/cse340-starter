@@ -7,6 +7,8 @@ const expressLayouts = require("express-ejs-layouts")
 require("dotenv").config()
 const pool = require("./database/pool")
 const utilities = require("./utilities")
+const accountRoute = require("./routes/accountRoute")
+
 
 const app = express()
 const PORT = parseInt(process.env.PORT || "5500", 10)
@@ -27,17 +29,26 @@ app.use(express.json())
 app.use(
   session({
     store: new PgSession({ pool, createTableIfMissing: true }),
-    secret: process.env.SESSION_SECRET || "dev_secret",
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 2 },
+    secret: process.env.SESSION_SECRET, 
+    resave: true,
+    saveUninitialized: true, 
+    name: "sessionId", 
   })
 )
+
+// Flash messages
+app.use(require("connect-flash")())
+
+app.use(function (req, res, next) {
+  res.locals.messages = require("express-messages")(req, res)
+  next()
+})
 
 // Routes
 app.use("/", require("./routes/index"))
 app.use("/health", require("./routes/health"))
 app.use("/inv", require("./routes/inventoryRoute"))
+app.use("/account", accountRoute)
 
 app.use(async (req, res, next) => {
   next({ status: 404, message: "Sorry, we appear to have lost that page." })

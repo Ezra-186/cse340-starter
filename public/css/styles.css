@@ -857,3 +857,57 @@ a:focus-visible {
     gap: 2.5rem;
   }
 }
+
+/* My Account */
+
+.account-heading {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.account-form {
+  max-width: 400px;
+  margin: 1rem auto;
+  padding: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  background-color: #f9f9f9;
+}
+
+.account-form label {
+  display: block;
+  margin-top: 0.75rem;
+  font-weight: 600;
+}
+
+.account-form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #bbb;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+}
+
+.account-form button {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.account-register-link {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Registry */
+
+.password-hint {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #555;
+}
