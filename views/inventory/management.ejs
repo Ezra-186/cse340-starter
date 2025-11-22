@@ -1,0 +1,23 @@
+<section class="inventory-management">
+    <div class="container">
+        <header class="inventory-header">
+            <h1 class="page-title">
+                <%= title %>
+            </h1>
+        </header>
+
+        <% if (message && message.length) { %>
+            <div class="notice">
+                <%= message[0] %>
+            </div>
+            <% } %>
+
+            <div class="management-actions">
+                <h2>Manage Inventory</h2>
+                <ul class="action-list">
+                    <li><a href="/inv/add-classification">Add New Classification</a></li>
+                    <li><a href="/inv/add-inventory">Add New Vehicle</a></li>
+                </ul>
+            </div>
+    </div>
+</section>
