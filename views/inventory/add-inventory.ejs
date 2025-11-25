@@ -41,12 +41,14 @@
                                     required><%= typeof inv_description != 'undefined' ? inv_description : '' %></textarea>
 
                                 <label for="inv_image">Image Path</label>
-                                <input type="text" id="inv_image" name="inv_image" required
-                                    value="<%= typeof inv_image != 'undefined' ? inv_image : '' %>" />
-
+                                <input type="text" id="inv_image" name="inv_image" required value="<%= typeof inv_image != 'undefined' && inv_image !== '' 
+                                        ? inv_image 
+                                        : '/images/vehicles/no-image.png' %>" />
+                                
                                 <label for="inv_thumbnail">Thumbnail Path</label>
-                                <input type="text" id="inv_thumbnail" name="inv_thumbnail" required
-                                    value="<%= typeof inv_thumbnail != 'undefined' ? inv_thumbnail : '' %>" />
+                                <input type="text" id="inv_thumbnail" name="inv_thumbnail" required value="<%= typeof inv_thumbnail != 'undefined' && inv_thumbnail !== '' 
+                                        ? inv_thumbnail 
+                                        : '/images/vehicles/no-image-tn.png' %>" />
 
                                 <label for="inv_price">Price</label>
                                 <input type="number" id="inv_price" name="inv_price" required min="0" step="0.01"
