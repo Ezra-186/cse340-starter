@@ -6,18 +6,27 @@
             </h1>
         </header>
 
-        <% if (message && message.length) { %>
-            <div class="notice">
-                <%= message[0] %>
-            </div>
-            <% } %>
+        <% const hasMessage=typeof message !=="undefined" && message && message.length %>
+            <% if (hasMessage) { %>
+                <div class="notice">
+                    <%= message[0] %>
+                </div>
+                <% } %>
 
-            <div class="management-actions">
-                <h2>Manage Inventory</h2>
-                <ul class="action-list">
-                    <li><a href="/inv/add-classification">Add New Classification</a></li>
-                    <li><a href="/inv/add-inventory">Add New Vehicle</a></li>
-                </ul>
-            </div>
+                    <div class="management-actions">
+                        <h2>Manage Inventory</h2>
+                        <p>Select a classification to see the inventory.</p>
+
+                        <label for="classificationList">Classification</label>
+                        <%- classificationSelect %>
+                    </div>
+
+                    <table id="inventoryDisplay"></table>
+
+                    <noscript>
+                        JavaScript must be enabled to use this page.
+                    </noscript>
+
+                    <script src="/js/inventory.js"></script>
     </div>
 </section>

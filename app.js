@@ -8,7 +8,7 @@ require("dotenv").config()
 const pool = require("./database/pool")
 const utilities = require("./utilities")
 const accountRoute = require("./routes/accountRoute")
-
+const cookieParser = require("cookie-parser")
 
 const app = express()
 const PORT = parseInt(process.env.PORT || "5500", 10)
@@ -24,15 +24,16 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use(morgan("dev"))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(cookieParser())
 
 // Sessions
 app.use(
   session({
     store: new PgSession({ pool, createTableIfMissing: true }),
-    secret: process.env.SESSION_SECRET, 
+    secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true, 
-    name: "sessionId", 
+    saveUninitialized: true,
+    name: "sessionId",
   })
 )
 
@@ -44,16 +45,21 @@ app.use(function (req, res, next) {
   next()
 })
 
+// JWT check
+app.use(utilities.checkJWTToken)
+
 // Routes
 app.use("/", require("./routes/index"))
 app.use("/health", require("./routes/health"))
 app.use("/inv", require("./routes/inventoryRoute"))
 app.use("/account", accountRoute)
 
+// 404 handler
 app.use(async (req, res, next) => {
   next({ status: 404, message: "Sorry, we appear to have lost that page." })
 })
 
+// Error handler
 app.use(async (err, req, res, next) => {
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
   const status = err.status || 500

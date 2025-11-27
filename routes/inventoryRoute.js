@@ -43,4 +43,36 @@ router.get(
   utilities.handleErrors(invController.buildVehicleDetail)
 )
 
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+)
+
+// Inventory item view
+router.get(
+  "/edit/:inv_id",
+  utilities.handleErrors(invController.editInventoryView)
+)
+
+// Updates my inventory item
+router.post(
+  "/update",
+  invValidate.newInventoryRules(),
+  invValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+)
+
+// Delete Inventory Item
+router.get(
+  "/delete/:inv_id",
+  utilities.handleErrors(invController.buildDeleteConfirm)
+)
+
+router.post(
+  "/delete",
+  utilities.handleErrors(invController.deleteInventoryItem)
+)
+
+
+
 module.exports = router

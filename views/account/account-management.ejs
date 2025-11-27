@@ -1,0 +1,28 @@
+<main>
+    <h1>
+        <%= title %>
+    </h1>
+
+    <% if (notice) { %>
+        <p class="notice">
+            <%= notice %>
+        </p>
+        <% } %>
+
+            <% if (errors && errors.length> 0) { %>
+                <ul class="errors">
+                    <% errors.forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
+
+                    <p>
+                        You're logged in
+                        <% if (account_firstname) { %>
+                            , <%= account_firstname %>
+                                <% } %>.
+                    </p>
+</main>

@@ -3,6 +3,7 @@ const utilities = require(".")
 
 const invValidate = {}
 
+// Classification rules
 invValidate.classificationRules = () => {
   return [
     body("classification_name")
@@ -32,6 +33,7 @@ invValidate.checkClassificationData = async (req, res, next) => {
   next()
 }
 
+// Inventory rules
 invValidate.inventoryRules = () => {
   return [
     body("classification_id")
@@ -77,6 +79,10 @@ invValidate.inventoryRules = () => {
   ]
 }
 
+// Inventory update rules
+invValidate.newInventoryRules = invValidate.inventoryRules
+
+// Check add inventory data
 invValidate.checkInventoryData = async (req, res, next) => {
   const classification_id = req.body.classification_id
   const {
@@ -117,5 +123,49 @@ invValidate.checkInventoryData = async (req, res, next) => {
   next()
 }
 
+// Check update data and return errors
+invValidate.checkUpdateData = async (req, res, next) => {
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body
+
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    const classificationList = await utilities.buildClassificationList(
+      classification_id
+    )
+    const itemName = `${inv_make} ${inv_model}`
+
+    return res.status(400).render("./inventory/edit-inventory", {
+      title: "Edit " + itemName,
+      nav,
+      errors: errors.array(),
+      classificationList,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+    })
+  }
+  next()
+}
 
 module.exports = invValidate
