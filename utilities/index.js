@@ -2,9 +2,9 @@ const invModel = require("../models/inventory-model")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
-
 const Util = {}
 
+// Navigation
 Util.getNav = async function () {
   const data = await invModel.getClassifications()
   let list = '<ul id="primary-nav">'
@@ -25,6 +25,7 @@ Util.getNav = async function () {
   return list
 }
 
+// Classification grid
 Util.buildClassificationGrid = function (rows) {
   if (!rows || rows.length === 0) {
     return "<p>No vehicles found.</p>"
@@ -35,9 +36,10 @@ Util.buildClassificationGrid = function (rows) {
     grid += `
       <li class="inv-card">
         <a href="/inv/detail/${v.inv_id}" title="${v.inv_year} ${v.inv_make} ${v.inv_model}">
-          ${v.inv_thumbnail && v.inv_thumbnail.trim() !== ""
-            ? `<img src="${v.inv_thumbnail}" alt="${v.inv_make} ${v.inv_model}" />`
-            : ""
+          ${
+            v.inv_thumbnail && v.inv_thumbnail.trim() !== ""
+              ? `<img src="${v.inv_thumbnail}" alt="${v.inv_make} ${v.inv_model}" />`
+              : ""
           }
           <h3>${v.inv_year} ${v.inv_make} ${v.inv_model}</h3>
           <p>$${Number(v.inv_price).toLocaleString()}</p>
@@ -49,9 +51,11 @@ Util.buildClassificationGrid = function (rows) {
   return grid
 }
 
+// Error handler wrapper
 Util.handleErrors = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next)
 
+// Vehicle detail html
 Util.buildVehicleDetailHtml = function (vehicle) {
   if (!vehicle) {
     return "<p>Sorry, the vehicle could not be found.</p>"
@@ -90,6 +94,7 @@ Util.buildVehicleDetailHtml = function (vehicle) {
   `
 }
 
+// Classification dropdown
 Util.buildClassificationList = async function (classification_id = null) {
   const data = await invModel.getClassifications()
   let classificationList =
@@ -112,25 +117,22 @@ Util.checkJWTToken = (req, res, next) => {
   const token = req.cookies.jwt
 
   if (!token) {
+    res.locals.loggedin = 0
+    res.locals.accountData = null
     return next()
   }
 
-  jwt.verify(
-    token,
-    process.env.ACCESS_TOKEN_SECRET,
-    (err, accountData) => {
-      if (err) {
-        req.flash("notice", "Please log in")
-        res.clearCookie("jwt")
-        return res.redirect("/account/login")
-      }
-
-      // Save user data and logged in flag for this request
-      res.locals.accountData = accountData
-      res.locals.loggedin = 1
-      next()
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, accountData) => {
+    if (err) {
+      res.locals.loggedin = 0
+      res.locals.accountData = null
+      return next()
     }
-  )
+
+    res.locals.accountData = accountData
+    res.locals.loggedin = 1
+    return next()
+  })
 }
 
 /* Require login for protected routes */
@@ -143,7 +145,20 @@ Util.checkLogin = (req, res, next) => {
   return res.redirect("/account/login")
 }
 
+/* Check employee or admin */
+Util.checkEmployeeOrAdmin = (req, res, next) => {
+  const accountData = res.locals.accountData
 
+  if (
+    accountData &&
+    (accountData.account_type === "Employee" ||
+      accountData.account_type === "Admin")
+  ) {
+    return next()
+  }
 
+  req.flash("notice", "You do not have permission to access that page.")
+  return res.redirect("/account/login")
+}
 
 module.exports = Util

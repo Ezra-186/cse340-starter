@@ -1059,3 +1059,269 @@ main {
   background-color: var(--color-primary);
   text-decoration: none;
 }
+
+/* Page messages */
+.notice {
+  max-width: 40rem;
+  margin: 1rem auto 2rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #e5f4ff;
+  color: #003366;
+  text-align: center;
+}
+
+.notice li {
+  list-style: none;
+}
+
+.errors,
+ul.notice.errors {
+  max-width: 40rem;
+  margin: 1rem auto 2rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #ffe5e5;
+  color: #7a1414;
+  text-align: center;
+}
+
+/* Account management layout */
+
+.inventory-management .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+  text-align: center;
+}
+
+.inventory-management h2 {
+  margin-bottom: 0.75rem;
+}
+
+.inventory-management p {
+  margin-bottom: 1rem;
+}
+
+.inventory-management table {
+  margin: 2rem auto 0;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+.inventory-management th,
+.inventory-management td {
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+}
+
+.inventory-management th {
+  text-align: left;
+  border-bottom: 1px solid #d0d4e4;
+}
+
+.inventory-management td:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.inventory-management td a {
+  margin-left: 0.75rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.inventory-management td a:first-child {
+  margin-left: 0;
+}
+
+.inventory-management td a:hover {
+  text-decoration: underline;
+}
+
+.inventory-management td a:last-child {
+  color: #b00020;
+}
+
+/* Account Management page */
+.account-management {
+  text-align: center;
+}
+
+.account-management .container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.account-management .page-title {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+}
+
+.account-management h2 {
+  margin: 1.25rem 0 0.25rem;
+}
+
+.account-management p {
+  margin: 0.25rem 0;
+}
+
+.account-management a {
+  display: inline-block;
+  padding: 0.45rem 1.4rem;
+  margin-top: 0.25rem;
+  border-radius: 999px;
+  background-color: #0b5ed7;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.account-management a:hover {
+  background-color: #08489f;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+
+/* Modify Vehicles */
+.add-inventory .container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.add-inventory .page-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.add-inventory .form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.add-inventory label {
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.add-inventory input,
+.add-inventory textarea,
+.add-inventory select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.35rem;
+  border: 1px solid #c7ccd9;
+}
+
+.add-inventory textarea {
+  min-height: 6rem;
+}
+
+/* Submit button */
+.add-inventory button[type="submit"] {
+  margin-top: 1rem;
+  align-self: center;
+  padding: 0.6rem 1.9rem;
+  border-radius: 999px;
+  border: none;
+  background-color: #004b93;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add-inventory button[type="submit"]:hover {
+  background-color: #003469;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+/* Header account area */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-account {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.welcome-text {
+  font-weight: 500;
+  color: #004b93;
+}
+
+.header-account {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.welcome-link {
+  font-weight: 500;
+  color: #004b93;
+  text-decoration: none;
+}
+
+.welcome-link:hover {
+  text-decoration: underline;
+}
+
+/* Layout for right-side header area */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-account {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Welcome link */
+.welcome-link {
+  font-weight: 500;
+  color: #004b93;
+  text-decoration: none;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+}
+
+.welcome-link:hover {
+  text-decoration: underline;
+}
+
+/* Logout */
+.account-link {
+  display: inline-block;
+  padding: 0.45rem 1.4rem;
+  border-radius: 999px;
+  background-color: #0b2143;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.account-link:hover {
+  background-color: #07152b;
+}

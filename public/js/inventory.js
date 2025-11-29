@@ -32,7 +32,11 @@ function buildInventoryList(data) {
   if (!inventoryDisplay) return
 
   let table = "<thead>"
-  table += "<tr><th>Vehicle Name</th><th></th><th></th></tr>"
+  table += "<tr>"
+  table += "<th scope='col'>Vehicle Name</th>"
+  table += "<th scope='col'>Modify</th>"
+  table += "<th scope='col'>Delete</th>"
+  table += "</tr>"
   table += "</thead><tbody>"
 
   data.forEach(function (vehicle) {
@@ -54,3 +58,4 @@ function buildInventoryList(data) {
 
   inventoryDisplay.innerHTML = table
 }
+

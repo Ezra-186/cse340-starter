@@ -7,6 +7,16 @@
       </a>
       <p class="header-tagline">Innovate the way you move</p>
     </div>
-    <a class="account-link" href="/account/login">My Account</a>
+
+    <nav class="header-account">
+      <% if (locals.loggedin) { %>
+        <a class="welcome-link" href="/account/">
+          Welcome <%= locals.accountData.account_firstname %>
+        </a>
+        <a class="account-link" href="/account/logout">Logout</a>
+        <% } else { %>
+          <a class="account-link" href="/account/login">My Account</a>
+          <% } %>
+    </nav>
   </div>
 </header>
