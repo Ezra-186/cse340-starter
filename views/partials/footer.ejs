@@ -15,9 +15,14 @@
     </div>
     <div id="account">
       <h2>Stay Informed</h2>
-      <form class="footer-form" action="/newsletter" method="post">
-        <label for="newsletter-email">Email address</label>
-        <input id="newsletter-email" type="email" name="email" required />
+      <form class="newsletter-form" action="/subscribe" method="post" novalidate>
+        <label class="visually-hidden" for="newsletter_email">Email address</label>
+        <input
+          type="email"
+          id="newsletter_email"
+          name="newsletter_email"
+          required
+        />
         <button type="submit">Subscribe</button>
       </form>
     </div>

@@ -556,17 +556,20 @@ main {
   color: rgba(245, 247, 255, 0.8);
 }
 
-.footer-form {
+.footer-form,
+.newsletter-form {
   display: grid;
   gap: 0.75rem;
 }
 
-.footer-form input {
+.footer-form input,
+.newsletter-form input {
   border-radius: 999px;
   padding: 0.75rem 1rem;
 }
 
-.footer-form button {
+.footer-form button,
+.newsletter-form button {
   padding: 0.75rem 1.25rem;
   border-radius: 999px;
   border: none;
@@ -578,7 +581,9 @@ main {
 }
 
 .footer-form button:hover,
-.footer-form button:focus {
+.footer-form button:focus,
+.newsletter-form button:hover,
+.newsletter-form button:focus {
   background: var(--color-accent);
 }
 
@@ -1184,6 +1189,97 @@ ul.notice.errors {
   transform: translateY(-1px);
 }
 
+/* Favorite toggle */
+.favorite-toggle {
+  margin-top: 1rem;
+}
+
+.favorite-button {
+  padding: 0.7rem 1.4rem;
+}
+
+/* Favorites page styles */
+.favorites-page .container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+  text-align: left;
+}
+
+.favorites-page .page-title {
+  text-align: left;
+}
+
+.favorites-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.favorites-table th,
+.favorites-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #e4e8f3;
+}
+
+.favorites-table thead th {
+  background: var(--color-surface-alt);
+  text-align: left;
+  font-weight: 700;
+}
+
+.favorites-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.favorite-vehicle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.favorite-vehicle img {
+  width: 72px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 1px solid #d6dce9;
+  background: #fff;
+}
+
+.favorite-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.favorite-actions form {
+  margin: 0;
+}
+
+.favorite-actions .button {
+  padding: 0.65rem 1.25rem;
+}
+
+.button-ghost {
+  background: transparent;
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.button-ghost:hover,
+.button-ghost:focus {
+  background: var(--color-primary-dark);
+  color: var(--color-surface);
+}
+
 
 /* Modify Vehicles */
 .add-inventory .container {
@@ -1272,6 +1368,7 @@ ul.notice.errors {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .welcome-link {
@@ -1324,4 +1421,13 @@ ul.notice.errors {
 
 .account-link:hover {
   background-color: #07152b;
+}
+
+.account-link-secondary {
+  background-color: var(--color-secondary);
+}
+
+.account-link-secondary:hover,
+.account-link-secondary:focus {
+  background-color: #0e6b3d;
 }

@@ -1,6 +1,7 @@
 // Inventory controller
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
+const favoriteModel = require("../models/favorite-model")
 
 const invController = {}
 
@@ -15,14 +16,34 @@ invController.buildByClassificationId = async function (req, res) {
 
 // Vehicle detail view
 invController.buildVehicleDetail = async function (req, res) {
-  const invId = Number(req.params.invId)
+  const invId = parseInt(req.params.invId, 10)
+
+  if (!Number.isInteger(invId) || invId <= 0) {
+    req.flash("notice", "Invalid vehicle selection.")
+    return res.redirect("back")
+  }
+
   const nav = await utilities.getNav()
   const vehicleData = await invModel.getVehicleById(invId)
   const vehicleDetail = utilities.buildVehicleDetailHtml(vehicleData)
   const title = vehicleData
     ? `${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}`
     : "Vehicle Not Found"
-  res.render("inventory/detail", { title, nav, vehicleDetail })
+  const message = req.flash("notice")
+  const account_id = res.locals.accountData?.account_id
+  const isFavorite =
+    account_id && vehicleData
+      ? await favoriteModel.isFavorite(account_id, invId)
+      : false
+
+  res.render("inventory/detail", {
+    title,
+    nav,
+    message,
+    vehicleDetail,
+    vehicle: vehicleData,
+    isFavorite,
+  })
 }
 
 // Inventory management view

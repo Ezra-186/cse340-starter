@@ -1,5 +1,6 @@
 const utilities = require("../utilities")
 const accountModel = require("../models/account-model")
+const subscriptionModel = require("../models/subscription-model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
@@ -70,6 +71,7 @@ async function registerAccount(req, res) {
   )
 
   if (regResult) {
+    await subscriptionModel.ensureSubscribed(account_email)
     req.flash(
       "notice",
       `Congratulations, you're registered ${account_firstname}. Please log in.`

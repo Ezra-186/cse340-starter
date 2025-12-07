@@ -3,8 +3,20 @@
     <header class="vehicle-detail-page__header">
       <h1 class="page-title"><%= title %></h1>
     </header>
+    <% if (message && message.length) { %>
+      <div class="notice">
+        <%= message[0] %>
+      </div>
+    <% } %>
     <div class="vehicle-detail-page__body">
       <%- vehicleDetail %>
+      <% if (loggedin && vehicle) { %>
+        <form class="favorite-toggle" action="/account/favorites/<%= vehicle.inv_id %>" method="post">
+          <button type="submit" class="button favorite-button">
+            <%= isFavorite ? "Remove from saved vehicles" : "Save this vehicle" %>
+          </button>
+        </form>
+      <% } %>
     </div>
   </div>
 </section>

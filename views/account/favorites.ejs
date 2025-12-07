@@ -1,0 +1,49 @@
+<section class="account-management favorites-page">
+  <div class="container">
+    <h1 class="page-title"><%= title %></h1>
+
+    <% if (message && message.length) { %>
+      <div class="notice">
+        <%= message[0] %>
+      </div>
+    <% } %>
+
+    <% if (!favorites || favorites.length === 0) { %>
+      <p>You don't have any saved vehicles yet.</p>
+    <% } else { %>
+      <div class="favorites-table">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Vehicle</th>
+              <th scope="col">Price</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% favorites.forEach((favorite) => { %>
+              <tr>
+                <td>
+                  <div class="favorite-vehicle">
+                    <% if (favorite.inv_thumbnail) { %>
+                      <img src="<%= favorite.inv_thumbnail %>" alt="<%= favorite.inv_make %> <%= favorite.inv_model %> thumbnail">
+                    <% } %>
+                    <span><%= favorite.inv_make %> <%= favorite.inv_model %></span>
+                  </div>
+                </td>
+                <td><%= Number(favorite.inv_price).toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }) %></td>
+                <td class="favorite-actions">
+                  <a class="button" href="/inv/detail/<%= favorite.inv_id %>">View details</a>
+                  <form action="/account/favorites/<%= favorite.inv_id %>" method="post">
+                    <input type="hidden" name="redirectTo" value="/account/favorites">
+                    <button type="submit" class="button button-ghost">Remove</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </div>
+</section>

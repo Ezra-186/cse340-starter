@@ -2,6 +2,7 @@ const express = require("express")
 const router = new express.Router()
 const utilities = require("../utilities")
 const accountController = require("../controllers/accountController")
+const favoriteController = require("../controllers/favoriteController")
 const regValidate = require("../utilities/account-validation")
 
 router.get(
@@ -46,6 +47,12 @@ router.get(
   utilities.handleErrors(accountController.buildAccountManagement)
 )
 
+router.get(
+  "/favorites",
+  utilities.checkLogin,
+  utilities.handleErrors(favoriteController.buildFavoritesView)
+)
+
 // Process registration
 router.post(
   "/register",
@@ -66,6 +73,12 @@ router.post(
 router.get(
   "/logout",
   utilities.handleErrors(accountController.logout)
+)
+
+router.post(
+  "/favorites/:invId",
+  utilities.checkLogin,
+  utilities.handleErrors(favoriteController.toggleFavorite)
 )
 
 module.exports = router

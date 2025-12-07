@@ -1,13 +1,17 @@
-const utilities = require("../utilities/")
+const utilities = require("../utilities")
+
 const baseController = {}
 
-baseController.buildHome = async function (req, res) {
+baseController.buildHome = async function (req, res, next) {
   const nav = await utilities.getNav()
+  const message = req.flash("notice")
 
-  // // test
-  // req.flash("notice", "This is a flash message.")
-
-  res.render("index", { title: "Home", nav })
+  return res.render("index", {
+    title: "Home",
+    nav,
+    errors: null,
+    message,
+  })
 }
 
 baseController.triggerError = async function () {

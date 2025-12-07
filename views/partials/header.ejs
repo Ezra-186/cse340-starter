@@ -13,6 +13,9 @@
         <a class="welcome-link" href="/account/">
           Welcome <%= locals.accountData.account_firstname %>
         </a>
+        <a class="account-link account-link-secondary" href="/account/favorites">
+          Saved Vehicles
+        </a>
         <a class="account-link" href="/account/logout">Logout</a>
         <% } else { %>
           <a class="account-link" href="/account/login">My Account</a>
